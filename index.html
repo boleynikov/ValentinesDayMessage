@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: eUkraineMedium;
+            src: url('/e-Ukraine/e-Ukraine-Medium.otf');
+        }
+
+        @font-face {
+            font-family: eUkraineBold;
+            src: url('/e-Ukraine/e-Ukraine-Bold.otf');
+        }
+
+        @font-face {
+            font-family: eUkraineLight;
+            src: url('/e-Ukraine/e-Ukraine-Light.otf');
+        }
+
+        html,
+        body {
+            height: 100%;
+            background-image: url('https://wallpapercave.com/wp/wp2649363.jpg');
+            font-family: eUkraine;
+        }
+
+        .center-content {
+            background-color: #f0f0f0de;
+            padding: 20px;
+            height: 420px;
+            width: 600px;
+        }
+
+        .HeaderText {
+            font-family: eUkraineBold;
+        }
+
+        .RegularText {
+            font-family: eUkraineMedium;
+        }
+
+        .LightText {
+            font-family: eUkraineLight;
+        }
+
+        /* .row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid d-flex justify-content-center align-items-center h-100">
+        <div class="center-content rounded-3">
+            <h1 class="text-center HeaderText" id="indexQ">1 вопрос</h1>
+            <h6 class="text-center mx-2 RegularText" id="question">Это правда или нет?
+            </h6>
+            <div class="row d-flex flex-direction-column justify-content-center align-items-center h-100">
+                <button type="button" class="col-5 btn btn-primary btn-lg mx-3 LightText" id="yes-btn">Yes</button>
+                <button type="button" class="col-5 btn btn-primary btn-lg mx-3 LightText" id="no-btn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questionsAnswers = [
+            { question: "Are you over 18 years old?", yes: 1, no: 2 },
+            { question: "Do you have any previous experience with this subject?", yes: 3, no: 4 },
+            { question: "Would you like to receive updates on this topic?", yes: 5, no: 6 },
+            { question: "Would you recommend this survey to others?", yes: "Thank you for your feedback!", no: "Thank you for your feedback!" },
+            { question: "Would you like to join our mailing list?", yes: "Thank you for your response!", no: "Thank you for your response!" },
+            { question: "Thank you for your interest in our updates!", yes: "Thank you for your response!", no: "Thank you for your response!" },
+            { question: "Thank you for your feedback!", yes: "Thank you for your response!", no: "Thank you for your response!" }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        const indexQuestion = document.getElementById('indexQ');
+        const questionElement = document.getElementById('question');
+        const yesButton = document.getElementById('yes-btn');
+        const noButton = document.getElementById('no-btn');
+
+        function displayQuestion(index) {
+            indexQuestion.textContent = `${++index} вопрос`
+            questionElement.textContent = questionsAnswers[index].question;
+        }
+
+        function handleAnswer(answer) {
+            if (answer === "yes") {
+                currentQuestionIndex = questionsAnswers[currentQuestionIndex].yes;
+            } else {
+                currentQuestionIndex = questionsAnswers[currentQuestionIndex].no;
+            }
+
+            if (typeof currentQuestionIndex === 'string') {
+                // Display final message
+                questionElement.textContent = currentQuestionIndex;
+                yesButton.style.display = 'none';
+                noButton.style.display = 'none';
+            } else {
+                displayQuestion(currentQuestionIndex);
+            }
+        }
+
+        displayQuestion(currentQuestionIndex);
+
+        yesButton.addEventListener('click', () => handleAnswer("yes"));
+        noButton.addEventListener('click', () => handleAnswer("no"));
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
