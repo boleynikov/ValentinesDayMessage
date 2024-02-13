@@ -28,6 +28,7 @@
 
         html,
         body {
+            max-width: 100%;
             height: 100%;
             background-image: url('https://wallpapercave.com/wp/wp2649363.jpg');
             font-family: eUkraine;
@@ -36,7 +37,7 @@
         .center-content {
             background-color: #f0f0f0de;
             padding: 20px;
-            height: 420px;
+            height: 400px;
             width: 600px;
         }
 
@@ -60,16 +61,16 @@
             <h1 class="text-center HeaderText" id="indexQ">1 вопрос</h1>
             <h6 class="text-center mx-2 RegularText" id="question">Это правда или нет?
             </h6>
-            <div class="row d-flex flex-direction-column justify-content-center align-items-center h-100">
-                <button type="button" class="col-5 btn btn-primary btn-lg mx-3 LightText" id="yes-btn">Yes</button>
-                <button type="button" class="col-5 btn btn-primary btn-lg mx-3 LightText" id="no-btn">No</button>
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <button type="button" class="col-5 btn btn-primary btn-lg mx-2 LightText" id="yes-btn">Да</button>
+                <button type="button" class="col-5 btn btn-primary btn-lg mx-2 LightText" id="no-btn">Нет</button>
             </div>
         </div>
     </div>
 
     <script>
         const questionsAnswers = [
-            { question: "Are you over 18 years old?", yes: 1, no: 2 },
+            { question: "Are you over 18 yeaфыввввввв вввввввв вввввввввыаы ыва ыва ыва ыв рпарапрпар апр апрап апрапр ыуаыв ввв ввввввввв ввввввввввв вввввввrs old?", yes: 1, no: 2 },
             { question: "Do you have any previous experience with this subject?", yes: 3, no: 4 },
             { question: "Would you like to receive updates on this topic?", yes: 5, no: 6 },
             { question: "Would you recommend this survey to others?", yes: "Thank you for your feedback!", no: "Thank you for your feedback!" },
@@ -79,14 +80,14 @@
         ];
 
         let currentQuestionIndex = 0;
-
+        let qIndex = 0;
         const indexQuestion = document.getElementById('indexQ');
         const questionElement = document.getElementById('question');
         const yesButton = document.getElementById('yes-btn');
         const noButton = document.getElementById('no-btn');
 
         function displayQuestion(index) {
-            indexQuestion.textContent = `${++index} вопрос`
+            indexQuestion.textContent = `${++qIndex} вопрос`
             questionElement.textContent = questionsAnswers[index].question;
         }
 
@@ -98,7 +99,7 @@
             }
 
             if (typeof currentQuestionIndex === 'string') {
-                // Display final message
+                indexQuestion.textContent = `Благодарочка`
                 questionElement.textContent = currentQuestionIndex;
                 yesButton.style.display = 'none';
                 noButton.style.display = 'none';
